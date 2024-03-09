@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./js/ind.js"></script>
+    <link rel="stylesheet" href="./css/ind.css">
+    <title>Unit Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="row__header">
+                <div class="col__header">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10.0405 8.70711C10.431 8.31658 10.431 7.68342 10.0405 7.29289C9.64994 6.90237 9.01677 6.90237 8.62625 7.29289L5.95958 9.95956C5.56906 10.3501 5.56906 10.9832 5.95958 11.3738L8.62625 14.0404C9.01677 14.431 9.64994 14.431 10.0405 14.0404C10.431 13.6499 10.431 13.0168 10.0405 12.6262L9.0809 11.6667H22.6667C23.219 11.6667 23.6667 11.219 23.6667 10.6667C23.6667 10.1144 23.219 9.66667 22.6667 9.66667H9.0809L10.0405 8.70711Z" fill="#2E0039"/>
+                            <path d="M21.9596 17.9596C21.5691 18.3501 21.5691 18.9832 21.9596 19.3738L22.9191 20.3333H9.33335C8.78107 20.3333 8.33335 20.781 8.33335 21.3333C8.33335 21.8856 8.78107 22.3333 9.33335 22.3333H22.9191L21.9596 23.2929C21.5691 23.6834 21.5691 24.3166 21.9596 24.7071C22.3501 25.0976 22.9833 25.0976 23.3738 24.7071L26.0405 22.0404C26.431 21.6499 26.431 21.0168 26.0405 20.6262L23.3738 17.9596C22.9833 17.569 22.3501 17.569 21.9596 17.9596Z" fill="#2E0039"/>
+                            </svg>
+                        <p>unit_converter</p>
+                      
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="row__main">
+                <div class="col__main">
+                    <div class="box__main--purple">
+                        <div class="row__main--headerbox">
+                            <p>convert</p>
+                        </div>
+                        <div class="row__main--mainbox">
+                            <div>
+                                <select name="medidas" id="medidas">
+                                    <option value="1">km → miles</option>
+                                    <option value="2">miles → km</option>
+                                    <option value="3">foot → metres</option>
+                                    <option value="4">metres → foot</option>
+                                    <option value="5">cm → inches</option>
+                                    <option value="6">inches → cm</option>
+                                </select>
+                                <svg id="cambio" width="25" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10.0405 8.70711C10.431 8.31658 10.431 7.68342 10.0405 7.29289C9.64994 6.90237 9.01677 6.90237 8.62625 7.29289L5.95958 9.95956C5.56906 10.3501 5.56906 10.9832 5.95958 11.3738L8.62625 14.0404C9.01677 14.431 9.64994 14.431 10.0405 14.0404C10.431 13.6499 10.431 13.0168 10.0405 12.6262L9.0809 11.6667H22.6667C23.219 11.6667 23.6667 11.219 23.6667 10.6667C23.6667 10.1144 23.219 9.66667 22.6667 9.66667H9.0809L10.0405 8.70711Z" fill="#fff"/>
+                                    <path d="M21.9596 17.9596C21.5691 18.3501 21.5691 18.9832 21.9596 19.3738L22.9191 20.3333H9.33335C8.78107 20.3333 8.33335 20.781 8.33335 21.3333C8.33335 21.8856 8.78107 22.3333 9.33335 22.3333H22.9191L21.9596 23.2929C21.5691 23.6834 21.5691 24.3166 21.9596 24.7071C22.3501 25.0976 22.9833 25.0976 23.3738 24.7071L26.0405 22.0404C26.431 21.6499 26.431 21.0168 26.0405 20.6262L23.3738 17.9596C22.9833 17.569 22.3501 17.569 21.9596 17.9596Z" fill="#fff"/>
+                                    </svg>
+                            </div>
+                            <div>
+                                <input type="number" name="insert" id="insert">
+                                <span id="insertMedida">km</span>
+                            </div>
+                               
+                        </div>
+                        <div class="row__main--footerbox">
+                            <div class="row__main--footerbox01">
+                                  <button id="corazon"></button>
+                            </div>
+                            <div class="row__main--footerbox02">
+                                <span id="result">62.12</span><span id="resultMedida">miles</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box_main--result">
+                        <p>saved</p>
+                        <div id="box_main_result--pather" class="box_main_result--pather">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footerAbsolute">
+            <div class="row__footer">
+                <div class="col__footer">
+                    <a href="#">
+                        Terms of service</a>
+                        <a href="#">
+                            Privacy policy</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
