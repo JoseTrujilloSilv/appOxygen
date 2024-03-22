@@ -28,6 +28,8 @@ function codigo() {
 
     */
 
+    //Tiene la variable var ya que es dinámico, es decir, que cambia alguna varbile del objeto de forma dinámica. Lo normal es que
+    //sea con const
     var html={
         __result:document.getElementById('result'),
         __insert:document.getElementById('insert'),
