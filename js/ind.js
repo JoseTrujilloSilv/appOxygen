@@ -6,7 +6,7 @@ function codigo() {
     Cambios de codigo: 
     
     - Nueva forma de implementar el DOM gracias al metodo objet HTML, entre las ventajas encontramos: un codigo más legible, 
-    un código más optimizado y mejor estructurado.
+    más optimizado y mejor estructurado.
 
     Tag:
 
