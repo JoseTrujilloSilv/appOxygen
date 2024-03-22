@@ -2,36 +2,72 @@ window.addEventListener('load',codigo);
 
 function codigo() {
 
-    var datesIN = document.getElementById('result').value;
-    var datesOUT = document.getElementById('insert').value;
-    var medida = document.getElementById('medidas').value;
+    /*
+    Cambios de codigo: 
+    
+    - Nueva forma de implementar el DOM gracias al metodo objet HTML.
+
+    Tag:
+
+    Ex: const html={
+        div:document.getElementsByTagNames('div')
+    }
+
+    Id:
+
+     Ex: const html={
+        __name:document.getElementById('name')
+    }
+
+    Class:
+
+     Ex: const html={
+        __myclass__:document.getElementsByClassname('myclass')
+    }
+
+    */
+
+    var html={
+        __result:document.getElementById('result'),
+        __insert:document.getElementById('insert'),
+        __medidas:document.getElementById('medidas'),
+        __insertMedida:document.getElementById('insertMedida'),
+        __resultMedida:document.getElementById('resultMedida'),
+        __cambio:document.getElementById('cambio'),
+        __corazon:document.getElementById('corazon'),
+        __box_main_result_pather:document.getElementById('box_main_result--pather'),
+        __box_main_result_row__:new Array()
+    }
+
+    var datesIN = html.__result.value;
+    var datesOUT = html.__insert.innerHTML;
+    let medida = html.__medidas.value;
+    var row;
+
     var result = 0;
-    var medidaEntrada = document.getElementById('insertMedida');
-    var medidaSalida = document.getElementById('resultMedida');
     var rowCont = 0;
     var contfile = 0;
     
 
-    document.getElementById('medidas').addEventListener('change', calcMedidas);
+    html.__medidas.addEventListener('change', calcMedidas);
 
-    document.getElementById('insert').addEventListener('keydown',calcMedidas);
+    html.__insert.addEventListener('keydown',calcMedidas);
 
-    document.getElementById('insert').addEventListener('input',calcMedidas);
+    html.__insert.addEventListener('input',calcMedidas);
 
+    html.__cambio.addEventListener('click',cambioMedida);
 
-    document.getElementById('cambio').addEventListener('click',cambioMedida);
-
-    document.getElementById('corazon').addEventListener('click',insertData);
+    html.__corazon.addEventListener('click',insertData);
 
 
     function kmMiles(input,medida) {
         medida==='1'?result = input/1.60934:result = input*1.60934;
         if (medida==='1') {
-            medidaEntrada.innerHTML='km';
-            medidaSalida.innerHTML='miles';
+            html.__insertMedida.textContent='km';
+            html.__resultMedida.textContent='miles';
         }else{
-            medidaEntrada.innerHTML='miles';
-            medidaSalida.innerHTML='km';
+            html.__insertMedida.textContent='miles';
+            html.__resultMedida.textContent='km';
         }
         return result;
     }
@@ -41,11 +77,11 @@ function codigo() {
     function footM(input,medida) {
         medida==='3'?result = input/3.28084:result = input*3.28084;
         if (medida==='3') {
-            medidaEntrada.innerHTML='feet';
-            medidaSalida.innerHTML='metres';
+            html.__insertMedida.textContent='feet';
+            html.__resultMedida.textContent='metres';
         }else{
-            medidaEntrada.innerHTML='metres';
-            medidaSalida.innerHTML='feet';
+            html.__insertMedida.textContent='metres';
+            html.__resultMedida.textContent='feet';
         }
         return result;
     }
@@ -54,11 +90,11 @@ function codigo() {
     function pulcm(input,medida) {
         medida==='5'?result = input/2.54:result = input*2.54;
         if (medida==='5') {
-            medidaEntrada.innerHTML='inches';
-            medidaSalida.innerHTML='cm';
+            html.__insertMedida.textContent='inches';
+            html.__resultMedida.textContent='cm';
         }else{
-            medidaEntrada.innerHTML='cm';
-            medidaSalida.innerHTML='inches';
+            html.__insertMedida.textContent='cm';
+            html.__resultMedida.textContent='inches';
         }
         return result;
     }
@@ -71,31 +107,31 @@ function codigo() {
         }   
         
 
-        let input = parseFloat(document.getElementById('insert').value);
+        let input = html.__insert.value;
         if (input===null||isNaN(input)) {
             input=0;
         }
         
         switch (medida) {
             case '1':
-                document.getElementById('result').innerHTML=kmMiles(input,medida).toFixed(2);
+                html.__result.textContent=kmMiles(input,medida).toFixed(2);
                 break;
             case '2':
-                document.getElementById('result').innerHTML=kmMiles(input,medida).toFixed(2);
+                html.__result.textContent=kmMiles(input,medida).toFixed(2);
                 break;
                 case '3':
-                    document.getElementById('result').innerHTML=footM(input,medida).toFixed(2);
+                    html.__result.textContent=footM(input,medida).toFixed(2);
                     break;
                     case '4':
-                        document.getElementById('result').innerHTML=footM(input,medida).toFixed(2);
+                        html.__result.textContent=footM(input,medida).toFixed(2);
                         break;
 
                         case '5':
-                            document.getElementById('result').innerHTML=pulcm(input,medida).toFixed(2);
+                            html.__result.textContent=pulcm(input,medida).toFixed(2);
                             break;
 
                             case '6':
-                                document.getElementById('result').innerHTML=pulcm(input,medida).toFixed(2);
+                                html.__result.textContent=pulcm(input,medida).toFixed(2);
                                 break;
             default:
                 break;
@@ -115,29 +151,29 @@ function codigo() {
         switch (medida) {
             case '1':
                 medida = '2';
-                document.getElementById('result').innerHTML=kmMiles(datesIN,medida).toFixed(2);
+                html.__result.textContent=kmMiles(datesIN,medida).toFixed(2);
                 break;
             case '2':
                 medida = '1';
-                document.getElementById('result').innerHTML=kmMiles(datesIN,medida).toFixed(2);
+                html.__result.textContent=kmMiles(datesIN,medida).toFixed(2);
                 break;
                 case '3':
                     medida = '4';
-                    document.getElementById('result').innerHTML=footM(datesIN,medida).toFixed(2);
+                    html.__result.textContent=footM(datesIN,medida).toFixed(2);
                     break;
                     case '4':
                         medida = '3';
-                        document.getElementById('result').innerHTML=footM(datesIN,medida).toFixed(2);
+                        html.__result.textContent=footM(datesIN,medida).toFixed(2);
                         break;
 
                         case '5':
                             medida = '6';
-                            document.getElementById('result').innerHTML=pulcm(datesIN,medida).toFixed(2);
+                            html.__result.textContent=pulcm(datesIN,medida).toFixed(2);
                             break;
 
                             case '6':
                                 medida = '5';
-                                document.getElementById('result').innerHTML=pulcm(datesIN,medida).toFixed(2);
+                                html.__result.textContent=pulcm(datesIN,medida).toFixed(2);
                                 break;
             default:
                 break;
@@ -148,11 +184,11 @@ function codigo() {
 
 
     function insertData() {
-        datesIN = document.getElementById('insert').value;
-        datesOUT = document.getElementById('result').innerHTML;
-
         let medidaIN = '';
         let medidaOUT = '';
+        datesIN = html.__insert.value;
+        datesOUT = html.__result.textContent;
+
 
         switch (medida) {
             case '1':
@@ -175,7 +211,7 @@ function codigo() {
                                 medidaIN = 'inches';
                                 medidaOUT = 'cm';
                                 break;
-                                case '5':
+                                case '6':
                                     medidaIN = 'cm';
                                     medidaOUT = 'inches';
                                     break;
@@ -184,28 +220,21 @@ function codigo() {
         }
 
         let id =parseInt(Math.random() * (9999 - 1) + 1);
-        let cad = datesIN+medidaIN+' → '+datesOUT+medidaOUT; 
+        let cad = datesIN.value+medidaIN+' → '+datesOUT+medidaOUT; 
         sessionStorage.setItem(id,cad);
       
-
-        console.log(sessionStorage.getItem(id));
-
         
         if (contfile%2===0) {
-            document.getElementById('box_main_result--pather').innerHTML+= 
-        '<div id="box_main_result--row'+rowCont+'"                       class="box_main_result--row">'
-            +'<div id="box_result?'+id+'" class="box_main_result--col">'+
-                '<div id="box_result_text" class="box_main_result--col--col1"><p>'+datesIN+medidaIN+' → '+datesOUT+medidaOUT+'</p><img id="'+id+'" class="close" src="./js/back/x-lg.svg" alt="">'+
-                '</div>'+
-            '</div>'
-        '</div>';
+
+            html.__box_main_result_pather.insertAdjacentHTML("beforeend",createrow(medidaIN,medidaOUT,id));
+            html.__box_main_result_row__.push(document.getElementById('box_main_result--row'+rowCont.toString()));
+
+            console.log(html.__box_main_result_row__);
+            
         contfile++;
         }else{
-            document.getElementById('box_main_result--row'+rowCont).innerHTML+= 
-            '<div id="box_result?'+id+'" class="box_main_result--col">'+
-                    '<div id="box_result_text" class="box_main_result--col--col1"><p>'+datesIN+medidaIN+' → '+datesOUT+medidaOUT+'</p><img id="'+id+'" class="close" src="./js/back/x-lg.svg" alt="">'+
-                    '</div>'+
-                '</div>';
+
+            html.__box_main_result_row__[rowCont].insertAdjacentHTML("beforeend",createcol(medidaIN,medidaOUT,id));
                 contfile++;
                 rowCont++;
         }
@@ -220,8 +249,61 @@ function codigo() {
     
     function eliminaMedida() {
         sessionStorage.removeItem(this.id);
-        document.getElementById('box_result?'+this.id).innerHTML='';
+        document.getElementById('box_result?'+this.id).textContent='';
     }
 
+
+    function createrow(medidaIN,medidaOUT,id) {
+        
+        const p__col = document.createElement('p');
+        p__col.textContent=datesIN+medidaIN+' → '+datesOUT+medidaOUT;
+        const img_col = document.createElement('img');
+        img_col.id=id;
+        img_col.classList.add('close');
+        img_col.src='./js/back/x-lg.svg';
+
+        const div_col = document.createElement('div');
+        div_col.id='box_result_text';
+        div_col.classList.add('box_main_result--col--col1');
+        div_col.appendChild(p__col);
+        div_col.appendChild(img_col);
+
+        var box_main_result_col=document.createElement('div');
+        box_main_result_col.id='box_result?'+id;
+        box_main_result_col.classList.add('box_main_result--col');
+        box_main_result_col.appendChild(div_col);
+
+        var box_main_row = document.createElement('div');
+        box_main_row.id='box_main_result--row'+rowCont;
+        box_main_row.classList.add('box_main_result--row');
+        box_main_row.appendChild(box_main_result_col);
+
+        return box_main_row.outerHTML;
+
+    }
+
+
+
+    function createcol(medidaIN,medidaOUT,id) {
+        const p__col = document.createElement('p');
+        p__col.textContent=datesIN+medidaIN+' → '+datesOUT+medidaOUT;
+        const img_col = document.createElement('img');
+        img_col.id=id;
+        img_col.classList.add('close');
+        img_col.src='./js/back/x-lg.svg';
+
+        const div_col = document.createElement('div');
+        div_col.id='box_result_text';
+        div_col.classList.add('box_main_result--col--col1');
+        div_col.appendChild(p__col);
+        div_col.appendChild(img_col);
+
+        var box_main_result_col=document.createElement('div');
+        box_main_result_col.id='box_result?'+id;
+        box_main_result_col.classList.add('box_main_result--col');
+        box_main_result_col.appendChild(div_col);
+
+        return box_main_result_col.outerHTML;
+    }
 
 }
